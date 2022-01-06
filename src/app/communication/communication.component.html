@@ -1,0 +1,18 @@
+<div class="communication-message">
+  <div *ngFor="let message of messageQueue"
+       [ngClass]="{
+       'communication-message__message': true,
+       'communication-message__message--success': message.type == successType,
+       'communication-message__message--error': message.type == errorType
+     }"
+       role="alert">
+    <div class="communication-message__message__row">
+      <strong>{{ getMsgLabel(message) }}</strong>
+      <button (click)="closeAlert(message)" type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div>{{message.text}}</div>
+  </div>
+</div>
+

@@ -1,0 +1,48 @@
+<form class="review" [formGroup]="reviewForm" (ngSubmit)="sendReview()">
+  <div class="review__row">
+    <div class="review__row__cell">
+      <div class="review__row__label">
+        Nick
+      </div>
+      <div class="review__row__value">
+        <input formControlName="nick"/>
+        <div class="review__row__value__error" *ngIf="!nickForm().valid && nickForm().touched && nickForm().getError('required')">nick jest wymagany</div>
+        <div class="review__row__value__error" *ngIf="!nickForm().valid && nickForm().touched && nickForm().getError('maxlength')">przekroczono limit {{maxNick}} znaków</div>
+      </div>
+    </div>
+    <div class="review__row__cell review__row__col--title">
+      <div class="review__row__label">
+        Tytuł
+      </div>
+      <div class="review__row__value">
+        <input formControlName="title" class="review__row__value--title"/>
+        <div class="review__row__value__error" *ngIf="!titleForm().valid && titleForm().touched && titleForm().getError('required')">tytuł jest wymagany</div>
+        <div class="review__row__value__error" *ngIf="!titleForm().valid && titleForm().touched && titleForm().getError('maxlength')">przekroczono limit {{maxTitle}} znaków</div>
+      </div>
+    </div>
+    <div class="review__row__cell">
+      <div class="review__row__label">
+        data zakupu
+      </div>
+      <div class="review__row__value">
+        <input type="date" formControlName="buyDate"/>
+      </div>
+    </div>
+  </div>
+  <div class="review__row review__row--content">
+    <div class="review__row__label">
+      Treść
+    </div>
+    <div class="review__row__value review__row__value--content">
+      <textarea formControlName="content" type="text" rows="15" cols="100"></textarea>
+      <div class="review__row__value__error" *ngIf="!contentForm().valid && contentForm().touched && contentForm().getError('required')">treść jest wymagana</div>
+      <div class="review__row__value__error" *ngIf="!contentForm().valid && contentForm().touched && contentForm().getError('maxlength')">przekroczono limit znaków</div>
+      <div class="review__row__value__error" *ngIf="!contentForm().valid && contentForm().touched && contentForm().getError('minlength')">wpisz minimum {{minContent}} znaków</div>
+<!--      <div>{{stringify(contentForm().errors)}}</div>-->
+      <div class="review__row__value--content__chars-counter">{{contentForm().value.length}} / {{maxContent}}</div>
+    </div>
+  </div>
+  <div class="review__row review__row--send">
+    <button [disabled]="!reviewForm.valid" type="submit">Wyślij</button>
+  </div>
+</form>

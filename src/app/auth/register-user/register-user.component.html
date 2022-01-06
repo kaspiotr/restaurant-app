@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-subtitle>Zarejestruj uzytkownika</mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="email">
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Rola</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="ADMIN">ADMIN</mat-option>
+              <mat-option value="KLIENT">KLIENT</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Hasło</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button colort="primary" (click)="signUp()" [disabled]="form.invalid">Zarejestruj</button>
+  </mat-card-actions>
+</mat-card>

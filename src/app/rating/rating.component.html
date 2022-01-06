@@ -1,0 +1,21 @@
+<div class="rating-container">
+  <div>średnia ocena: {{meal.rating}}</div>
+  <div class="rating__stars">
+    <mat-icon aria-hidden="false" aria-label="Example home icon"
+              [ngClass]="{
+              'rating__stars__star--marked': starScore <= roundAvgRating()
+              }"
+              *ngFor="let starScore of stars">star
+    </mat-icon>
+  </div>
+  <div>Twoja ocena:</div>
+  <div class="rating__stars">
+    <mat-icon aria-hidden="false" aria-label="Example home icon"
+              [ngClass]="{
+              'rating__stars__star--marked': starScore <= userRating
+              }"
+              *ngFor="let starScore of stars"
+              (click)="markStarAt(starScore)">star
+    </mat-icon>
+  </div>
+</div>

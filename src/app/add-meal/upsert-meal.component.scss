@@ -1,0 +1,80 @@
+.add-meal {
+  background: lightgray;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid black;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-meal__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.add-meal__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.add-meal__footer__list {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  line-break: anywhere;
+}
+
+.add-meal__footer__list__images-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.add-meal__footer__list__element {
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-meal__footer__list__element__img {
+  width: 50px;
+  height: 50px;
+}
+
+.add-meal__row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.add-meal__input {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+}
+
+.add-meal__input__description-counter {
+  align-self: flex-end;
+}
+
+.add-meal__input__error {
+  color: black;
+  text-shadow: 0 0 8px red;
+}

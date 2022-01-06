@@ -1,0 +1,26 @@
+<div *ngIf="mealView" class="order-meal"
+     [ngClass]="{
+        'order-meal__price': true,
+        'order-meal__price--most-expensive': isMostExpensive(mealView),
+        'order-meal__price--cheapest': isCheapest(mealView)
+      }">
+  <div class="order-meal__row">
+    <div style="margin-right: 8px">cena:</div>
+    <div>{{mealView!.price!.value.toFixed(2)}}{{mealView!.price!.currency}}</div>
+  </div>
+  <div class="order-meal__row">
+    <div *ngIf="isCheapest(mealView)" class="order-meal__price__text">NAJTANIEJ!!!</div>
+    <div *ngIf="isMostExpensive(mealView)" class="order-meal__price__text">DLA KONESERÓW</div>
+  </div>
+  <button (click)="addToBasket(mealView)" [disabled]="mealView.available == 0 || mealView.toOrderCount == 0">DODAJ DO KOSZYKA</button>
+  <button [disabled]="isNotInBasket()" (click)="removeFromBasket()">USUŃ Z KOSZYKA ({{getBasketCount()}})</button>
+  <div [ngClass]="{
+        'order-meal__footer__buttons': true,
+        'order-meal__footer__buttons--order-more': mealView.toOrderCount < 10
+        }">
+    <button (click)="incrementOrders(mealView);$event.stopPropagation()" [disabled]="mealView.available == mealView.toOrderCount">+</button>
+    <input readonly="true" class="order-meal__footer__buttons__order-count" type="number"
+           [value]="mealView.toOrderCount"/>
+    <button (click)="decrementOrders(mealView)" [disabled]="mealView.toOrderCount == 0">-</button>
+  </div>
+</div>

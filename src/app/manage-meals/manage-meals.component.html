@@ -1,0 +1,16 @@
+<app-menu></app-menu>
+<div class="manage-meals">
+  <app-filter-meals (onFilterValueChanged)="updateFilter($event)"></app-filter-meals>
+  <app-upsert-meal></app-upsert-meal>
+  <div class="manage-meals__list">
+    <div class="manage-meals__list__row" *ngFor="let meal of meals | search:filter">
+      <div class="manage-meals__list__row__cell">
+        <app-upsert-meal [mealToEdit]="meal"></app-upsert-meal>
+      </div>
+      <div class="manage-meals__list__row__cell manage-meals__list__row__cell--vertical">
+        <button (click)="cancelEdit()">{{'anuluj edycję' | uppercase}}</button>
+        <button (click)="deleteMeal(meal)">{{'usuń danie' | uppercase}}</button>
+      </div>
+    </div>
+  </div>
+</div>

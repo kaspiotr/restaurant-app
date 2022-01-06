@@ -1,0 +1,33 @@
+.manage-meals {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: calc(100% - 180px)
+}
+
+.manage-meals__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-meals__list__row {
+  display: flex;
+  flex-direction: row;
+  min-height: 100px;
+  background: lightgray;
+  border-radius: 4px;
+  border: solid 1px black;
+  padding: 8px;
+  justify-content: space-between;
+}
+
+.manage-meals__list__row__cell {
+  display: flex;
+  flex-direction: row;
+}
+
+.manage-meals__list__row__cell--vertical {
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

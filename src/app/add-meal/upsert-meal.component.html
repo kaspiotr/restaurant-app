@@ -1,0 +1,114 @@
+<form class="add-meal" [formGroup]="mealForm" (ngSubmit)="onSubmit()">
+  <div class="add-meal__main">
+    <div class="add-meal__row">
+      <div class="add-meal__input">
+        <div>nazwa:</div>
+        <div>
+          <input formControlName="name"/>
+          <div class="add-meal__input__error" *ngIf="!getForm('name').valid && getForm('name').touched && getForm('name').getError('required')">nazwa jest wymagana</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('name').valid && getForm('name').touched && getForm('name').getError('maxlength')">max. długość {{this.defaultMaxLength}}</div>
+        </div>
+      </div>
+      <div class="add-meal__input">
+        <div>kuchnia:</div>
+        <div>
+          <input formControlName="cuisine"/>
+          <div class="add-meal__input__error" *ngIf="!getForm('cuisine').valid && getForm('cuisine').touched && getForm('cuisine').getError('required')">kuchnia jest wymagana</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('cuisine').valid && getForm('cuisine').touched && getForm('cuisine').getError('maxlength')">max. długość {{this.defaultMaxLength}}</div>
+        </div>
+      </div>
+      <div class="add-meal__input">
+        <div>typ:</div>
+        <div>
+          <input formControlName="type"/>
+          <div class="add-meal__input__error" *ngIf="!getForm('type').valid && getForm('type').touched && getForm('type').getError('required')">typ jest wymagany</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('type').valid && getForm('type').touched && getForm('type').getError('maxlength')">max. długość {{this.defaultMaxLength}}</div>
+        </div>
+      </div>
+      <div class="add-meal__input">
+        <div>kategoria:</div>
+        <div>
+          <input formControlName="category"/>
+          <div class="add-meal__input__error" *ngIf="!getForm('category').valid && getForm('category').touched && getForm('category').getError('required')">kategoria jest wymagana</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('category').valid && getForm('category').touched && getForm('category').getError('maxlength')">max. długość {{this.defaultMaxLength}}</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="add-meal__row">
+      <div class="add-meal__input">
+        <div>opis:</div>
+        <div>
+          <textarea formControlName="description" rows="15" cols="100"></textarea>
+          <div class="add-meal__input__error" *ngIf="!getForm('description').valid && getForm('description').touched && getForm('description').getError('required')">opis jest wymagany</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('description').valid && getForm('description').touched && getForm('description').getError('minlength')">minimum {{minDescription}} znaków</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('description').valid && getForm('description').touched && getForm('description').getError('maxlength')">maksimum {{maxDescription}} znaków</div>
+          <div class="add-meal__input__description-counter">{{getForm('description').value.length}} / {{maxDescription}}</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="add-meal__row">
+
+      <div class="add-meal__input">
+        <div>dostępnych:</div>
+        <div>
+          <input formControlName="available" type="number"/>
+          <div class="add-meal__input__error" *ngIf="!getForm('available').valid && getForm('available').touched && getForm('available').getError('required')">pole wymagane</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('available').valid && getForm('available').touched && getForm('available').getError('min')">minimum {{this.minAvailable}}</div>
+          <div class="add-meal__input__error" *ngIf="!getForm('available').valid && getForm('available').touched && getForm('available').getError('max')">maksymalnle {{this.maxAvailable}}</div>
+        </div>
+      </div>
+      <div class="add-meal__input">
+        <div>cena:</div>
+        <div>
+        </div>
+        <input type="number" formControlName="price"><div>{{getCurrentCurrency()}}</div>
+        <div class="add-meal__input__error" *ngIf="!getForm('price').valid && getForm('price').touched && getForm('price').getError('required')">cena jest wymagana</div>
+        <div class="add-meal__input__error" *ngIf="!getForm('price').valid && getForm('price').touched && getForm('price').getError('min')">minimalnie 0.01</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="add-meal__footer">
+
+    <div class="add-meal__footer__list">
+      <div class="add-meal__input">
+        <div>dodaj obrazek (URL):</div>
+        <div>
+          <input [(ngModel)]="imgUrlToAdd" [ngModelOptions]="{standalone: true}"/>
+        </div>
+
+        <button (click)="addImgUrl()" type="button">dodaj</button>
+      </div>
+      <div class="add-meal__footer__list__images-row">
+        <div class="add-meal__footer__list__element" *ngFor="let url of images; let imgIdx = index">
+          <img alt="image" class="add-meal__footer__list__element__img" src="{{url}}"/>
+          <button (click)="deleteImg(imgIdx)" type="button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-meal__footer__list">
+      <div class="add-meal__input">
+        <div>składniki:</div>
+        <div>
+          <input [(ngModel)]="ingredientNameToAdd" [ngModelOptions]="{standalone: true}"/>
+        </div>
+        <button (click)="addIngredient()" type="button">dodaj</button>
+      </div>
+      <div class="add-meal__footer__list__element" *ngFor="let ingredient of ingredients; let ingredientIdx = index">
+        <div>{{ ingredient.name }}</div>
+        <button (click)="deleteIngredient(ingredientIdx)" type="button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <button style="min-height: 40px" type="submit" [disabled]="!mealForm.valid">{{upsertButtonLabel | uppercase}}</button>
+  </div>
+</form>

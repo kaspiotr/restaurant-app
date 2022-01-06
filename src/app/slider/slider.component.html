@@ -1,0 +1,5 @@
+<div class="meals__slider" *ngIf="meal">
+  <button (click)="prevImg(meal)"><<</button>
+  <img class="meal__img__img" src="{{meal.imgUrls[meal.currentImgIdx]}}"/>
+  <button (click)="nextImg(meal)">>></button>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <div (mouseleave)="showDropDown = false">
+    <button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+      <span *ngIf="checkedList.length<=0">wybierz</span>
+      <span *ngIf="checkedList.length>0">{{getSelectorLabel()}}</span>
+      <i class="fa fa-angle-down"></i>
+    </button>
+    <div class="drop-show" *ngIf="showDropDown">
+      <label *ngFor="let option of list">
+        <input *ngIf="multiselect"
+               type="checkbox" [(ngModel)]="option.checked"
+               (change)="onSelectionChanged(option)" />
+        <span *ngIf="multiselect">{{option.name}}</span>
+        <div [ngClass]="{ 'single-option-checked': option.checked }"
+          *ngIf="!multiselect" (click)="onSingleOptionSelected(option)">{{option.name}}</div>
+      </label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.order-history {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-history__title {
+  display: flex;
+  width: 95%;
+  font-size: xx-large;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-history__order {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 8px;
+  margin: 16px;
+  background: lightgray;
+  border: 1px solid black;
+  border-radius: 4px;
+}

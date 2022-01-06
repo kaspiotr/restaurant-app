@@ -1,0 +1,17 @@
+.meals__slider {
+  display: flex;
+  flex-direction: row;
+
+  button {
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 4px;
+    font-size: xx-large;
+    text-align: center;
+  }
+}
+
+.meal__img__img {
+  height: 200px;
+  width: 200px;
+}

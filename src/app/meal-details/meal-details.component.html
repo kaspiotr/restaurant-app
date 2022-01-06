@@ -1,0 +1,49 @@
+<div class="details" *ngIf="meal">
+  <div class="details__row details__row--space-between">
+    <div class="details__row__cell">
+      <button (click)="backToMenu()">Powrót do menu</button>
+    </div>
+    <div class="details__row__cell">
+      <app-currency-switch></app-currency-switch>
+    </div>
+  </div>
+  <div class="details__row">
+    <div class="details__row__cell">
+      <div class="details__row__cell__label">Nazwa</div>
+      <div class="details__row__cell__value">{{meal.name}}</div>
+    </div>
+  </div>
+  <div class="details__row details__row--space-between">
+    <div class="details__row__cell">
+      <div class="details__row__cell__label">Opis</div>
+      <div class="details__row__cell__value">{{meal.description}}</div>
+    </div>
+    <app-slider [meal]="mealView"></app-slider>
+  </div>
+  <div class="details__row">
+    <div class="details__row__cell">
+      <div class="details__row__cell__label">Kategoria</div>
+      <div class="details__row__cell__value">{{meal.category}}</div>
+    </div>
+  </div>
+  <div class="details__row">
+    <app-review class="details__row__cell details__row__cell--review"
+                (reviewAdded)="subscribeToReviews()"
+                [mealId]="mealView!.id"></app-review>
+    <app-rating class="details__row__cell"
+                [meal]="meal"></app-rating>
+    <app-order-meal class="details__row__cell"
+                    [mealView]="mealView"></app-order-meal>
+  </div>
+  <div class="details__row details__row--reviews" *ngIf="mealReviews.length > 0">
+    <div class="details__row--reviews__title">Recenzje potrawy</div>
+    <div class="details__row--reviews__review" *ngFor="let mealReview of mealReviews">
+      <div class="details__row__cell--review__title">{{mealReview.title}}</div>
+      <div class="details__row--reviews__content">{{mealReview.content}}</div>
+      <div>~{{mealReview.nick}} ({{mealReview.date}})</div>
+    </div>
+  </div>
+</div>
+<div class="details details--not-found" *ngIf="!meal">
+    🔎 Nie znaleziono elementu menu #{{mealId}} 🔍
+</div>

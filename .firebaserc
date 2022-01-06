@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "wdai-restaurant-app": {
+      "hosting": {
+        "restaurant-app": [
+          "wdai-restaurant-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "wdai-restaurant-app"
+  }
+}

@@ -1,0 +1,22 @@
+.rating-container {
+  background: red;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating__stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.rating__stars__star--marked {
+  color: yellow;
+}

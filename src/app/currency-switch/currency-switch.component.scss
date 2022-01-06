@@ -1,0 +1,13 @@
+.currency-switch {
+  width: 100px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  button {
+    font-size: xx-large;
+    min-height: 40px;
+    min-width: 40px;
+  }
+}

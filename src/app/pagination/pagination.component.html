@@ -1,0 +1,15 @@
+<div class="pagination">
+  <div class="pagination__page-select-label">Elementów na stronie:</div>
+  <app-select-dropdown class="pagination__page-select"
+                       [options]="pageCountOptions"
+                       (optionsChange)="onPageCountChanged($event)"
+                       [multiselect]="false"
+                       [defaultOption]="pagination.count"></app-select-dropdown>
+  <div class="pagination__page-select-label">Strona:</div>
+  <button [ngClass]="{
+    'pagination__page-select__page': true,
+    'pagination__page-select__page--selected': pagination.page === page
+  }"
+          (click)="setPage(page)"
+          *ngFor="let page of pages">{{page}}</button>
+</div>

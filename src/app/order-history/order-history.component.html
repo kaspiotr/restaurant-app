@@ -1,0 +1,11 @@
+<app-menu></app-menu>
+<div class="order-history">
+  <div class="order-history__title">Historia zamówień</div>
+  <div class="order-history__order" *ngFor="let historyEntry of history">
+    <div>
+      <div class="order-history__order__title">Zamówienie #{{historyEntry.id}} ({{historyEntry.date | date:'yyyy-MM-dd HH:mm'}}), koszt: {{getCost(historyEntry).toFixed(2)}}</div>
+      <div class="order-history__order__details" *ngFor="let detail of historyEntry.details">- {{detail.name}}, koszt: {{detail.price}}, ilość: {{detail.amount}}</div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,63 @@
+<div class="filter-meals">
+  <div class="filter-meals__item">
+    <div class="filter-meals__title">nazwa:</div>
+    <div>
+      <input [ngModel]="name" (ngModelChange)="onNameChanged($event)">
+    </div>
+  </div>
+  <div class="filter-meals__item">
+    <div class="filter-meals__item__title">kuchnia:</div>
+    <div>
+      <app-select-dropdown class="filter-meals__item__multi-select-dropdown"
+                                 [options]="cuisines"
+                                 (optionsChange)="onSelectedCuisinesChanged($event)">
+      </app-select-dropdown>
+    </div>
+  </div>
+  <div class="filter-meals__item">
+    <div class="filter-meals__title">typ:</div>
+    <div>
+      <app-select-dropdown class="filter-meals__multi-select-dropdown"
+                                 [options]="types"
+                                 (optionsChange)="onSelectedTypesChanged($event)">
+      </app-select-dropdown>
+    </div>
+  </div>
+  <div class="filter-meals__item">
+    <div class="filter-meals__title">ocena:</div>
+    <div>
+      <app-select-dropdown class="filter-meals__multi-select-dropdown"
+                                 [options]="ratings"
+                                 (optionsChange)="onSelectedRatingsChanged($event)">
+      </app-select-dropdown>
+    </div>
+  </div>
+  <div class="filter-meals__item">
+    <div class="filter-meals__title">cena min: {{minSliderPrice.toFixed(2)}}{{currencySymbol}}</div>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatPriceSliderLabel"
+        [(ngModel)]="minSliderPrice"
+        (input)="onMinSliderPriceChange($event)"
+        tickInterval="1000"
+        step="1"
+        min="{{minPrice}}"
+        max="{{maxPrice}}"
+        aria-label="units">
+      </mat-slider>
+  </div>
+  <div class="filter-meals__item">
+    <div class="filter-meals__title">cena max: {{maxSliderPrice.toFixed(2)}}{{currencySymbol}}</div>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatPriceSliderLabel"
+        [(ngModel)]="maxSliderPrice"
+        (input)="onMaxSliderPriceChange($event)"
+        tickInterval="1000"
+        step="1"
+        min="{{minPrice}}"
+        max="{{maxPrice}}"
+        aria-label="units">
+      </mat-slider>
+  </div>
+</div>

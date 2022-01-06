@@ -1,0 +1,32 @@
+.menu__title {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+  font-size: xxx-large;
+}
+
+.menu__list {
+  display: flex;
+  background: gray;
+}
+
+.menu__list__element {
+  display: block;
+  padding: 20px;
+  flex-direction: row;
+  color: white;
+  flex: 1;
+}
+
+.menu__list__element:hover {
+  background: darkgray;
+  transition: background .1s;
+}
+
+@media screen and (max-width: 700px) {
+  .menu__list {
+    flex-direction: column;
+    text-align: center;
+  }
+}

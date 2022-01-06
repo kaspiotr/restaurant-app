@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.pagination__page-select-label {
+  margin-right: 8px;
+}
+
+.pagination__page-select {
+  margin-right: 8px;
+
+  ::ng-deep .drop-toggle {
+    width: 40px!important;
+  }
+
+  ::ng-deep .drop-show {
+    width: 40px!important;
+  }
+}
+
+.pagination__page-select__page {
+  margin: 4px;
+}
+
+.pagination__page-select__page--selected {
+  background: cornflowerblue;
+  color: white;
+}

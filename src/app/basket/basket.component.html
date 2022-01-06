@@ -1,0 +1,47 @@
+<app-menu></app-menu>
+<div class="basket">
+  <div class="basket__item" *ngFor="let detail of order.details">
+    <div class="basket__item__detail">
+      <div class="basket__item__detail__col">
+        Nazwa:
+      </div>
+      <div class="basket__item__detail__col">
+        {{detail.name}}
+      </div>
+    </div>
+    <div class="basket__item__detail">
+      <div class="basket__item__detail__col">
+        Porcje: <button (click)="more(detail)">+</button> <button (click)="less(detail)">-</button>
+      </div>
+      <div class="basket__item__detail__col">
+        {{detail.amount}}
+      </div>
+    </div>
+    <div class="basket__item__detail">
+      <div class="basket__item__detail__col">
+        Cena (szt):
+      </div>
+      <div class="basket__item__detail__col">
+        {{detail.price}}$
+      </div>
+    </div>
+    <div class="basket__item__detail">
+      <div class="basket__item__detail__col">
+        Cena:
+      </div>
+      <div class="basket__item__detail__col">
+        {{getCost(detail)}}$
+      </div>
+    </div>
+  </div>
+  <div class="basket__summary">
+    <div class="basket__summary__item">Całkowity koszt zamówienia:</div>
+    <div class="basket__summary__item">{{getTotalCost().toFixed(2)}}{{currencySymbol}}</div>
+  </div>
+  <div class="basket__order-button">
+    <button (click)="sendOrder()" [disabled]="order.details.length == 0">Zamów</button>
+  </div>
+  <div class="basket__return-button">
+    <button (click)="goToMainMenu()">Powrót do menu</button>
+  </div>
+</div>

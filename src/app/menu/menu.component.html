@@ -1,0 +1,19 @@
+<div class="menu-container">
+  <div class="menu__title">Restauracja Online</div>
+  <div class="menu__list">
+    <div class="menu__list__element" *ngFor="let linkWrapper of linkWrappers"
+         (click)="redirectTo(linkWrapper)">{{linkWrapper.title}}</div>
+    <div *ngIf="isAdmin()" class="menu__list__element"
+         (click)="redirectTo({title: 'Zarządzaj potrawami', link: 'manage-meals'})">Zarządzaj potrawami</div>
+    <div *ngIf="userData" class="menu__list__element"
+      (click)="redirectTo({
+            title: 'Wyloguj (' + userData.user.email +  ' | ' + userData.user.role + ')',
+            link: ''
+      })">{{'Wyloguj (' + userData.user.email +  ' | ' + userData.user.role + ')'}}</div>
+    <div *ngIf="!userData" class="menu__list__element"
+         (click)="redirectTo({title: 'Zaloguj', link: 'login'})">Zaloguj</div>
+    <div *ngIf="!userData" class="menu__list__element"
+         (click)="redirectTo({title: 'Zarejestruj', link: 'register'})">Zarejestruj</div>
+    <app-currency-switch></app-currency-switch>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.basket {
+  display: flex;
+  flex-direction: column;
+}
+
+.basket__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: lightgray;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 8px;
+  margin: 8px;
+}
+
+.basket__item__detail {
+  min-width: 200px;
+}
+
+.basket__summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background: gray;
+  border-radius: 8px;
+  border: 1px solid black;
+  margin: 8px;
+  padding: 8px;
+  color: white;
+}
+
+.basket__return-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.basket__order-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+}

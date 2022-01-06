@@ -1,0 +1,6 @@
+<div class="currency-switch">
+  <div *ngFor="let currency of currencies">
+    <button (click)="changeCurrency(currency)">{{getCurrencySymbol(currency)}}</button>
+  </div>
+</div>
+

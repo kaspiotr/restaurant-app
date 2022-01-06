@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<div class="meals-container">
+  <div class="meals__filters-header">
+    <app-filter-meals (onFilterValueChanged)="onFilterValueChanged($event)"
+                      class="meals__filter-meals"></app-filter-meals>
+    <div class="meals__basket-button">
+      <div (click)="goToBasket()">
+        <mat-icon class="meals__basket-button__icon">shopping_cart</mat-icon>
+        ({{basketCount}})
+      </div>
+    </div>
+  </div>
+  <div class="meals">
+    <app-pagination class="meals__meal"
+                    (paginationChange)="onPaginationChange($event)"
+                    [totalElements]="(meals | search:filterValue).length"></app-pagination>
+    <div
+      *ngFor="let meal of (meals | search:filterValue).slice((pagination.page - 1) * pagination.count, (pagination.page - 1) * pagination.count + pagination.count)"
+      [ngClass]="{
+      'meals__meal': true,
+      'meals__meal__price--cheapest': isCheapest(meal),
+      'meals__meal__price--most-expensive': isMostExpensive(meal)
+      }">
+      <div class="meals__meal__main">
+        <div class="meals__meal__description">
+          <div class="meals__meal__row">
+            <div class="meals__meal__row__column">nazwa:</div>
+            <div class="meals__meal__row__column">{{meal.name | uppercase}}</div>
+          </div>
+          <div class="meals__meal__row">
+            <div class="meals__meal__row__column">kuchnia:</div>
+            <div class="meals__meal__row__column">{{meal.cuisine | uppercase}}</div>
+          </div>
+          <div class="meals__meal__row">
+            <div class="meals__meal__row__column">typ:</div>
+            <div class="meals__meal__row__column">{{meal.type}}</div>
+          </div>
+          <div class="meals__meal__row">
+            <div class="meals__meal__row__column">kategoria:</div>
+            <div class="meals__meal__row__column">{{meal.category}}</div>
+          </div>
+          <div class="meal__row-buttons">
+            <button (click)="details(meal)" type="button">SZCZEGÓŁY</button>
+          </div>
+        </div>
+        <div class="meal__img">
+          <app-slider [meal]="meal"></app-slider>
+        </div>
+        <div class="meals__meal__row__column">
+          <div [ngClass]="{
+          'meals__meal__availability': true,
+          'meals__meal__availability--much': getAvailability(meal) == much,
+          'meals__meal__availability--not-much': getAvailability(meal) == notMuch,
+          'meals__meal__availability--mauo': getAvailability(meal) == little
+          }">
+            <div>dostępnych:</div>
+            <div>{{meal.available}}</div>
+          </div>
+          <app-rating [meal]="meal"></app-rating>
+        </div>
+        <app-order-meal [mealView]="meal" [minPrice]="minPrice" [maxPrice]="maxPrice"></app-order-meal>
+      </div>
+    </div>
+  </div>
+</div>
